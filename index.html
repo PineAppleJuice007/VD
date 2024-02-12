@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="icon" href="logo.ico">
+
+</head>
+<body>
+    <div class="container">
+        <label>
+        <div class="heart">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg"></img>
+        </div>
+        <input id="messageState" type="checkbox" style="display:none"/>
+        </label>
+        <div class="message">
+            <h1><b>Hello</b></h1>
+            <p><br><br>        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo nemo optio et harum beatae assumenda debitis, fugiat quia nostrum architecto!<br><br>    
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem minus tempora eum dolorum eaque dolor tempore sed saepe deserunt ea ipsum fugit placeat voluptate dicta, temporibus quis et qui earum corrupti 
+                pariatur quae. Magni ad cumque alias in modi aut officia reprehenderit dicta, possimus beatae fugit impedit! Non, autem earum?<br><br>        I will be forever grateful for meeting you and for being my special someone.
+            </p>
+        </div>
+    </div>
+
+    <div class="container-item">
+          <a target="_blank" class="button" href="bloom.html">Click me!</a>
+    </div>
+
+    <script nounce>
+        $("#messageState").on("change", (x) => {
+	$(".message").removeClass("openNor").removeClass("closeNor");
+	if ($("#messageState").is(":checked")) {
+		$(".message").removeClass("closed").removeClass("no-anim").addClass("openNor");
+		$(".heart").removeClass("closeHer").removeClass("openedHer").addClass("openHer");
+		$(".container").stop().animate({"backgroundColor": "#f48fb1"}, 2000);
+		console.log("Abrindo");
+	} else {
+		$(".message").removeClass("no-anim").addClass("closeNor");
+		$(".heart").removeClass("openHer").removeClass("openedHer").addClass("closeHer");
+		$(".container").stop().animate({"backgroundColor": "#fce4ec"}, 2000);
+		console.log("fechando");
+	}
+});
+
+$(".message").on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+	console.log("Animation End");
+	if ($(".message").hasClass("closeNor"))
+		$(".message").addClass("closed");
+	$(".message").removeClass("openNor").removeClass("closeNor").addClass("no-anim");
+});
+
+$(".heart").on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+	console.log("Animation End");
+	if (!$(".heart").hasClass("closeHer"))
+		$(".heart").addClass("openedHer").addClass("beating");
+	else
+		$(".heart").addClass("no-anim").removeClass("beating");
+	$(".heart").removeClass("openHer").removeClass("closeHer");
+});
+    </script>   
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
